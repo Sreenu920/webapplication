@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>List Users</title>
+	<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+	<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+
+<style type="text/css">
+table, th, td {
+	border: 1px solid black;
+}
+
+		body {
+			background-image: url('https://media.istockphoto.com/id/1210413775/vector/blue-sky-with-lens-flare-and-bokeh-pattern-background-vector-illustration.jpg?s=612x612&w=0&k=20&c=RpX421HmpmPa3wt69WzBBEVOirjPmkg60EBk5MYgmKk=');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: 100% 100%;
+		}
+
+</style>
+</head>
+<body>
+   <nav class="navbar navbar-expand-sm bg-success navbar-dark">
+  <a class="navbar-brand" href="#">HR Portal</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+      <form th:action="@{/admin/logout}" method="post">
+			<input type="submit" value=" Logout" />
+		</form>
+    </ul>
+  </div>
+</nav>
+<div class="container text-center">
+	<h4> welcome to portal</h4>
+	<h3><a th:href="@{/admin/registernewemp}">--->Register new employee(click here)</a></h3>
+	
+	
+		<h1>List of Employees</h1>
+	</div>
+	
+	<div>
+	
+	<table class="table table-striped table-bordered" style="width: 100%">
+        <thead class="thead-dark">
+		<tr>
+			<th>User ID</th>
+			<th>E-mail</th>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Remove Employee</th>
+		</tr>
+		</thead>
+		<tr th:each="user: ${totalusers}">
+		    <td th:text="${user.id}">User ID</td>
+			<td th:text="${user.email}">E-mail</td>
+			<td th:text="${user.firstName}">First Name</td>
+			<td th:text="${user.lastName}">Last Name</td>
+			<td><a th:href="@{/deleteEmployee(Id=${user.id})}" class="btn btn-danger ml-2">Delete</a></td> 
+		</tr>
+	</table>
+	
+		<br>
+		<div class="container text-center">
+		<h3><a th:href="@{/admin/docUpload}">--->Payslips Upload(click here)</a></h3>
+		</div>
+	</div>
+
+</body>
+</html>

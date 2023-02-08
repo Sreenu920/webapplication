@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>welcome to HR Login Page</title>
+<style>
+      /* CSS styles for the login container */
+      #login-container {
+        width: 500px;
+        margin: 0 auto;
+        background-color: #f2f2f2;
+        padding: 20px;
+        border-radius: 5px;
+      }
+
+      /* CSS styles for the form elements */
+      label {
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      input[type="email"] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+      }
+
+      /* CSS styles for the login button */
+      input[type="password"] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+      }
+      
+		body {
+			background-image: url('https://img.freepik.com/free-photo/vivid-blurred-colorful-wallpaper-background_58702-3979.jpg');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: 100% 100%;
+		}
+    </style>
+ 
+ 
+</head>
+<body>
+<div align="center">
+      <h2> HR login </h2>
+      
+      
+      <div th:if="${param.error}">
+      
+      <h4 style="color: red">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]] </h4>
+      
+      
+      </div>
+      <form th:action="@{/admin/login}" method="post">
+      <table>
+      <tr>
+      <td> email: </td>
+      <td><input type="email" name="email" placeholder="enter email id" required />
+      </tr>
+       <tr>
+      <td> password: </td>
+      <td><input type="password" name="password" placeholder="enter password" required />
+      </tr>
+      
+      <tr><td>&nbsp;</td></tr>
+      <tr>
+      <td colspan="2" align="center"><input type="submit" value="Login" /></td>
+      </tr>
+      
+      </table>
+      
+      
+      
+      
+      
+      
+      </form>
+</div>
+</body>
+</html>

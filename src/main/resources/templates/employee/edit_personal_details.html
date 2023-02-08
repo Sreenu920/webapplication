@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title> Home Page </title>
+   <style>
+   body {
+	  background-image: url('https://media.istockphoto.com/id/1210413775/vector/blue-sky-with-lens-flare-and-bokeh-pattern-background-vector-illustration.jpg?s=612x612&w=0&k=20&c=RpX421HmpmPa3wt69WzBBEVOirjPmkg60EBk5MYgmKk=');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: 100% 100%;
+		}
+   </style>
+    
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="#">Employee access portal</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="home"> Home </a>
+      </li>
+      <li class="nav-item dropdown active">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Menu </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="home">Home</a>
+          <a class="dropdown-item" href="personaldetails"> personal details</a>
+          <a class="dropdown-item" href="viewDocuments"> Pay-Slip</a>
+         
+          <form  th:action="@{/employee/logout}" method="post">
+            <input type="submit" value="Logout" />
+            </form>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="personaldetails"> personal details </a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="viewDocuments"> Pay-Slip </a>
+      </li>
+      <ul class="navbar-nav m-auto ">    
+       <form th:action="@{/employee/logout}" method="post">
+            <input type="submit" value="Logout" />
+        
+      </form>
+      </ul>
+    </ul>
+    
+  </div>
+</nav>
+   
+
+ 
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+ 
+
+
+<div class="container">
+	<div>
+			<h1>
+				Welcome <b>[[${#request.userPrincipal.principal.fullName}]]</b>
+			</h1>
+		
+	</div>
+	
+	<div>
+	<p>First Name: <b>[[${#request.userPrincipal.principal.firstName}]]</b>
+	</p>
+	<p>Last Name: <b>[[${#request.userPrincipal.principal.lastName}]]</b></p>
+	<p>Employee Id: <b>[[${#request.userPrincipal.principal.id}]]</b>
+	</p>
+	<p>Email Id: <b>[[${#request.userPrincipal.principal.email}]]</b></p>
+	<br>
+	<hr>
+<form th:action="@{/employee/updatepersonaldetails}"  
+			method="post" style="max-width: 600px; margin: 0 auto;">
+		<div class="m-3">
+			<div class="form-group row">
+				<label class="col-4 col-form-label">Address: </label>
+				<div class="col-8">
+					<input type="text" name="address" class="form-control" required />
+				</div>
+			</div>
+			
+			<div class="form-group row">
+				<label class="col-4 col-form-label">Phone: </label>
+				<div class="col-8">
+					<input type="text" name="phone" class="form-control" 
+							/>
+				</div>
+			</div>
+									
+			<div>
+				<button type="submit" class="btn btn-primary">Submit</button> 
+			</div>
+		</div>
+		</form>	
+	
+	</div>
+	
+	
+
+</div>
+</body>
+</html>

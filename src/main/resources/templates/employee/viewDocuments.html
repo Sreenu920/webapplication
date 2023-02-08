@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+	<meta charset="ISO-8859-1">
+	<title>My Documents</title>
+	<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+	<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+<style>
+   body {
+	  background-image: url('https://media.istockphoto.com/id/1210413775/vector/blue-sky-with-lens-flare-and-bokeh-pattern-background-vector-illustration.jpg?s=612x612&w=0&k=20&c=RpX421HmpmPa3wt69WzBBEVOirjPmkg60EBk5MYgmKk=');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: 100% 100%;
+		}
+   </style>
+
+</head>
+<body>
+
+<header>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="#">Employee access portal</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="home"> Home </a>
+      </li>
+      <li class="nav-item dropdown active">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Menu </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="home">Home</a>
+          <a class="dropdown-item" href="personaldetails"> personal details</a>
+          <a class="dropdown-item" href="viewDocuments"> Pay-Slip</a>
+          
+          
+          <form  th:action="@{/employee/logout}" method="post">
+            <input type="submit" value="Logout" />
+            </form>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="personaldetails"> personal details </a>
+      </li>
+      <li>
+      <li class="nav-item active">
+        <a class="nav-link" href="viewDocuments"> Pay-Slip </a>
+      </li>
+      <ul class="navbar-nav m-auto ">    
+       <form th:action="@{/employee/logout}" method="post">
+            <input type="submit" value="Logout" />
+        
+      </form>
+      </ul>
+    </ul>
+   
+  </div>
+</nav>
+</header>
+
+<br>
+
+<div class="container">
+	<div  class="container">
+		
+			<p>
+				Welcome <b>[[${#request.userPrincipal.principal.fullName}]]</b>
+			</p>
+		
+		<h1>Payslips</h1>	
+	</div>
+	
+<div class="row border rounded m-3 p-3">
+<th:block th:each="doc:${listDocs}">
+<div class="col">
+<div><img th:src="@{/images/payslip.jpg}" width="100"/></div>
+<div><a th:href="@{'/employee/download?id='+${doc.id}}">[[${doc.name}]]</a></div></div>
+</th:block> 
+</div>
+	
+
+</div>
+</body>
+</html>
