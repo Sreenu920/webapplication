@@ -9,10 +9,11 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>net.codejava</groupId>
-	<artifactId>SpringBootRegistrationLogin</artifactId>
+	<artifactId>ashwin-web</artifactId>
 	<version>1.0</version>
 	<name>SpringBootRegistrationLogin</name>
 	<description>Demo registration (sign up) and Login (Sign in)</description>
+	<packaging>jar</packaging>
 
 	<properties>
 		<java.version>11</java.version>
